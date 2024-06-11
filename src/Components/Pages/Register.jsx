@@ -65,6 +65,7 @@ const Register = () => {
                             const userInfo = {
                                 name: data.name,
                                 email: data.email,
+                                status:'active',
                                 district: data.district,
                                 upazila: data.upazila,
                                 bloodGroup: data.bloodGroup,
@@ -117,6 +118,7 @@ const Register = () => {
                 const userInfo = {
                     name: user.displayName,
                     email: user.email,
+                    status:'active',
                 }
                 axiosPublic.post('/users', userInfo)
                     .then(res => {

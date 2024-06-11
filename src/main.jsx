@@ -53,26 +53,26 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path:'dashboard',
-    element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-    children:[
-      
+    path: 'dashboard',
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    children: [
+
       //admin routes
 
       {
-        path:'adminHome',
-        element:<AdminRoute><AdminHome></AdminHome></AdminRoute>
+        path: 'adminHome',
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
       },
       {
-        path:'allUsers',
-        element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
+        path: 'allUsers',
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
 
       //user routes
 
       {
-        path:'userHome',
-        element:<UserHome></UserHome>
+        path: 'userHome',
+        element: <UserHome></UserHome>
       }
     ]
   }
@@ -80,14 +80,14 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <AuthProviderr>
 
-    <AuthProviderr>
-      <QueryClientProvider client={queryClient}>
         <HelmetProvider>
           <RouterProvider router={router} />
         </HelmetProvider>
-      </QueryClientProvider>
-    </AuthProviderr>
 
+      </AuthProviderr>
+    </QueryClientProvider>
   </React.StrictMode>,
 )

@@ -37,12 +37,63 @@ const AllUsers = () => {
             })
     }
 
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm()
+    const handleActive = (user) => {
+        console.log(user._id);
+        axiosSecure.patch(`/user-active/${user._id}`)
+            .then(res => {
+                console.log(res.data);
+                refetch()
+                // if (res.data.modifiedCount > 0) {
+                //     Swal.fire({
+                //         position: "top-end",
+                //         icon: "success",
+                //         title: `${user.name} is ${user.status} now.`,
+                //         showConfirmButton: false,
+                //         timer: 1500
+                //     });
+
+                // }
+                // else{
+                //     Swal.fire({
+                //         position: "top-end",
+                //         icon: "success",
+                //         title: `${user.name} is already ${user.status}.`,
+                //         showConfirmButton: false,
+                //         timer: 1500
+                //     });
+                // }
+
+            })
+    }
+
+    const handleBlock = (user) => {
+        console.log(user._id);
+        axiosSecure.patch(`/user-block/${user._id}`)
+            .then(res => {
+                console.log(res.data);
+                refetch()
+                // if (res.data.modifiedCount > 0) {
+                //     Swal.fire({
+                //         position: "top-end",
+                //         icon: "success",
+                //         title: `${user.name} is ${user.status} now.`,
+                //         showConfirmButton: false,
+                //         timer: 1500
+                //     });
+
+                // }
+                // else{
+                //     Swal.fire({
+                //         position: "top-end",
+                //         icon: "success",
+                //         title: `${user.name} is already ${user.status}.`,
+                //         showConfirmButton: false,
+                //         timer: 1500
+                //     });
+                // }
+
+            })
+    }
 
 
     return (
@@ -51,8 +102,8 @@ const AllUsers = () => {
                 <p className='text-2xl'>All Users</p>
             </div>
 
-            <div className="overflow-x-auto">
-                <table className="table table-zebra">
+            <div className="">
+                <table className="table">
                     {/* head */}
                     <thead>
                         <tr>
@@ -83,11 +134,23 @@ const AllUsers = () => {
                                 </td>
                                 <td>
 
-                                    <select defaultValue='default' {...register("bloodGroup", { required: true })} className=" select select-bordered w-24">
-                                        <option disabled value='default'>Status</option>
-                                        <option value="active">Active</option>
-                                        <option value="blocked">Blocked</option>
-                                    </select>
+                                    {/* <form onSubmit={handleSubmit(onSubmit)}>
+                                        <select defaultValue='default' {...register("bloodGroup", { required: true })} className=" select select-bordered w-24">
+                                            <option disabled value='default'>{user.status}</option>
+                                            <option value="active">Active</option>
+                                            <option value="blocked">Blocked</option>
+                                        </select>
+                                    </form> */}
+
+
+                                    <div className="dropdown dropdown-hover">
+                                        <div tabIndex={0} role="button" className="btn m-1 capitalize">{user.status}</div>
+                                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box">
+                                            <li onClick={()=>handleActive(user)}><a>Active</a></li>
+                                            <li onClick={()=>handleBlock(user)}><a>Block</a></li>
+                                        </ul>
+                                    </div>
+
 
                                 </td>
                                 <td>

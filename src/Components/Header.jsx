@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from './Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useAdmin } from './Hooks/useAdmin';
+import { AuthContext } from '../Providerr/AuthProviderr';
+import useUser from './Hooks/useUser';
 
 const Header = () => {
 
     const [isAdmin]=useAdmin()
+    // const [st]=useUser()
+    // console.log(st)
 
     const auth = useAuth()
     // console.log(auth.user);
-    const { user, logOut } = auth
-    console.log(user);
+    const { user, logOut,status } = auth
+    console.log(status);
+    // console.log(user);
+    // console.log(status);
+    
 
 
     const links = <>

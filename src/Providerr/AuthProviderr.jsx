@@ -3,6 +3,9 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 import { app } from '../Firebase/firebase.config';
 import { GoogleAuthProvider } from "firebase/auth";
 import useAxiosPublic from '../Components/Hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../Components/Hooks/useAxiosSecure';
+import axios from 'axios';
 // import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 export const AuthContext=createContext()
@@ -12,11 +15,11 @@ const AuthProviderr = ({children}) => {
     const [user,setUser]=useState(null)
     const [loading,setLoading]=useState(true)
     const provider = new GoogleAuthProvider();
+    const [status,setStatus]=useState(null)
 
 
     // for jwt
     const axiosPublic=useAxiosPublic()
-
 
     const createUser=(email,password)=>{
         setLoading(true)
@@ -57,6 +60,20 @@ const AuthProviderr = ({children}) => {
                         setLoading(false)
                     }
                 })
+
+                // fetch(`http://localhost:5000/user/${currentUser.email}`)
+                // .then(res=>res.json())
+                // .then(data=>{
+                //     console.log(data);
+                //     setUs(data)
+                // })
+
+                axios.get(`http://localhost:5000/user/${currentUser.email}`)
+                .then(res=>{
+                    // console.log(res.data.status);
+                    setStatus(res.data.status)
+                })
+                
             }
             else{
                 // TODO: remove Token (if token stored in the client side: local storage,caching,in memory)
@@ -70,8 +87,11 @@ const AuthProviderr = ({children}) => {
         }
     },[axiosPublic])
 
+    // console.log(status);
+
     const userInfo={
         user,
+        status,
         loading,
         createUser,
         signIn,
