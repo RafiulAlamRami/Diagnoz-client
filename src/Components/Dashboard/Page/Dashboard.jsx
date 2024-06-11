@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { FaShoppingCart, FaHome, FaCalendarAlt, FaEnvelope } from "react-icons/fa";
 import { MdReviews, MdFormatListBulletedAdd, MdOutlineRestaurantMenu } from "react-icons/md";
+import { GrTestDesktop } from "react-icons/gr";
 import { ImBook } from "react-icons/im";
 import { HiUserGroup } from "react-icons/hi";
 import { useAdmin } from '../../Hooks/useAdmin';
@@ -24,11 +25,11 @@ const Dashboard = () => {
                             <>
                                 <li className='my-1'><NavLink to='/dashboard/adminHome'><FaHome></FaHome>Admin Home</NavLink></li>
 
-                                <li className='my-1'><NavLink to='/dashboard/addTest'><MdOutlineRestaurantMenu />Add new test</NavLink></li>
+                                <li className='my-1'><NavLink to='/dashboard/addTest'><GrTestDesktop />Add new test</NavLink></li>
 
                                 <li className='my-1'><NavLink to='/dashboard/allTest'><MdFormatListBulletedAdd />All Tests</NavLink></li>
 
-                                <li className='my-1'><NavLink to='/dashboard/reservation'><ImBook />Reservation</NavLink></li>
+                                {/* <li className='my-1'><NavLink to='/dashboard/reservation'><ImBook />Reservation</NavLink></li> */}
 
                                 <li className='my-1'><NavLink to='/dashboard/allUsers'><HiUserGroup />All Users</NavLink></li>
 
