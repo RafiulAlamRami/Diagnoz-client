@@ -25,6 +25,10 @@ import AdminHome from './Components/Dashboard/Page/AdminHome.jsx';
 import UserHome from './Components/Dashboard/UserPageD/UserHome.jsx';
 import PrivateRoute from './Components/PrivateRoute.jsx';
 import AdminRoute from './Components/Dashboard/AdminRoute.jsx';
+import Addtest from './Components/Dashboard/Page/Addtest.jsx';
+import AllTest from './Components/Dashboard/Page/AllTest.jsx';
+import Reservation from './Components/Dashboard/Page/Reservation.jsx';
+import AddBanner from './Components/Dashboard/Page/AddBanner.jsx';
 // import AuthProvider from './Provider/AuthProvider.jsx';
 
 const queryClient = new QueryClient()
@@ -66,6 +70,22 @@ const router = createBrowserRouter([
       {
         path: 'allUsers',
         element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+      },
+      {
+        path: 'addTest',
+        element: <AdminRoute><Addtest></Addtest></AdminRoute>
+      },
+      {
+        path: 'allTest',
+        element: <AdminRoute><AllTest></AllTest></AdminRoute>
+      },
+      {
+        path: 'reservation',
+        element: <AdminRoute><Reservation></Reservation></AdminRoute>
+      },
+      {
+        path: 'addBanner',
+        element: <AdminRoute><AddBanner></AddBanner></AdminRoute>
       },
 
       //user routes

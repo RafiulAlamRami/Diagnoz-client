@@ -23,11 +23,16 @@ const Dashboard = () => {
                         isAdmin ?
                             <>
                                 <li className='my-1'><NavLink to='/dashboard/adminHome'><FaHome></FaHome>Admin Home</NavLink></li>
-                                {/* <li className='my-1'><NavLink to='/dashboard/addItem'><MdOutlineRestaurantMenu />Add Items</NavLink></li> */}
-                                {/* <li className='my-1'><NavLink to='/dashboard/manageItems'><MdFormatListBulletedAdd />Manage Items</NavLink></li> */}
-                                {/* <li className='my-1'><NavLink to='/dashboard/manageBookings'><ImBook />Manage Bookings</NavLink></li> */}
+
+                                <li className='my-1'><NavLink to='/dashboard/addTest'><MdOutlineRestaurantMenu />Add new test</NavLink></li>
+
+                                <li className='my-1'><NavLink to='/dashboard/allTest'><MdFormatListBulletedAdd />All Tests</NavLink></li>
+
+                                <li className='my-1'><NavLink to='/dashboard/reservation'><ImBook />Reservation</NavLink></li>
+
                                 <li className='my-1'><NavLink to='/dashboard/allUsers'><HiUserGroup />All Users</NavLink></li>
-                                {/* <li className='my-1'><NavLink to='/dashboard/paymentHistory'><MdFormatListBulletedAdd />My Payment History</NavLink></li> */}
+
+                                <li className='my-1'><NavLink to='/dashboard/addBanner'><MdFormatListBulletedAdd />Add Banner</NavLink></li>
                             
                             </>
                             :
