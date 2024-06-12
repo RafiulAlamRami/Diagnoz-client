@@ -31,14 +31,7 @@ const AllTests = () => {
     }
     
 
-    // const enabledDates = [
-    //     new Date(2024, 5, 15), 
-    //     new Date(2024, 5, 16), 
-    //     new Date(2024, 5, 17), 
-    //     new Date(2024, 5, 18), 
-    //     new Date(2024, 5, 19), 
-
-    // ];
+  
 
     const enabledDates = Array.from({ length:b+1 }, (_, index) => (
         new Date(new Date().getFullYear(), new Date().getMonth() , a + index) 
