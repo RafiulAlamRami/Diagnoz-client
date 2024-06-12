@@ -29,6 +29,7 @@ import Addtest from './Components/Dashboard/Page/Addtest.jsx';
 import AllTest from './Components/Dashboard/Page/AllTest.jsx';
 import Reservation from './Components/Dashboard/Page/Reservation.jsx';
 import AddBanner from './Components/Dashboard/Page/AddBanner.jsx';
+import DelailsPage from './Components/Pages/DelailsPage.jsx';
 // import AuthProvider from './Provider/AuthProvider.jsx';
 
 const queryClient = new QueryClient()
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: '/allTests',
         element: <AllTests></AllTests>
+      },
+      {
+        path:'/details/:id',
+        element:<PrivateRoute><DelailsPage></DelailsPage></PrivateRoute>
       }
     ]
   },
