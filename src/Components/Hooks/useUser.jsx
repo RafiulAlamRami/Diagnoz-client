@@ -9,7 +9,7 @@ const useUser = () => {
     const [st,setStatus]=useState([])
     axios.get(`http://localhost:5000/user/${user?.email}`)
                 .then(res=>{
-                    // console.log(res.data.status);
+                    console.log(res.data.status);
                     setStatus(res.data.status)
                 })
     return [st];
