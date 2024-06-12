@@ -123,7 +123,7 @@ export const CheckOutForm = ({ price, id, refetch }) => {
 
                 const res = await axiosSecure.post('/payments', payment)
                 console.log('payment save : ', res.data);
-                const slot = await axiosSecur.patch(`/test-slot/${id}`)
+                const slot = await axiosSecure.patch(`/test-slot/${id}`)
 
                 if (res.data?.paymentResult?.insertedId) {
                     Swal.fire({
