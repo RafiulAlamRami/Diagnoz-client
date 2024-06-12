@@ -149,7 +149,10 @@ export const CheckOutForm = ({ price, id, refetch }) => {
                 <button disabled={disable} onClick={hancu} className='btn'>Apply Cupon</button>
 
             </div>
-            
+            <div className='my-5'>
+                {er ? `${er}` : ''}
+                {disable ? `previous price $${price},after cupon apply current price $${pr}` : `total price$${price}`}
+            </div>
             <form onSubmit={handleSubmit}>
 
                 <CardElement
