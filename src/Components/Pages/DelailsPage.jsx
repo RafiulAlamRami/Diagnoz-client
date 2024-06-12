@@ -46,7 +46,23 @@ const DelailsPage = () => {
 
 
 
-                                
+                                <div className=" gap-[1.5em]" >
+                                    <button className={`text-white font-work text-[1em] font-semibold btn bg-[#50B1C9] hover:bg-[#50B1C9] ${test.slot < 1 ? 'btn-disabled' : ''} `} onClick={() => document.getElementById('my_modal_5').showModal()}>Book Now</button>
+                                    <p>{test.slot < 1 ? 'You cannot Book now because no more slot availabe' : ''}</p>
+                                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                                        <div className="modal-box">
+                                            <Elements stripe={stripePromise}>
+                                                <CheckOutForm price={test.price} id={test._id}></CheckOutForm>
+                                            </Elements>
+                                            <div className="modal-action">
+                                                <form method="dialog">
+                                                    {/* if there is a button in form, it will close the modal */}
+                                                    <button className={`btn hover:bg-green-500 hover:text-white`}>Close</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </dialog>
+                                </div>
                                 {/* Open the modal using document.getElementById('ID').showModal() method */}
 
                             </div>
