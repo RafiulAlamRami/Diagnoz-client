@@ -61,14 +61,14 @@ const AuthProviderr = ({children}) => {
                     }
                 })
 
-                // fetch(`http://localhost:5000/user/${currentUser.email}`)
+                // fetch(`https://diagnoz-server.vercel.app/user/${currentUser.email}`)
                 // .then(res=>res.json())
                 // .then(data=>{
                 //     console.log(data);
                 //     setUs(data)
                 // })
 
-                axios.get(`http://localhost:5000/user/${currentUser.email}`)
+                axios.get(`https://diagnoz-server.vercel.app/user/${currentUser.email}`)
                 .then(res=>{
                     // console.log(res.data.status);
                     setStatus(res.data.status)

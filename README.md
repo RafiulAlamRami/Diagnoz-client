@@ -1,8 +1,32 @@
-# React + Vite
+# Diagnoz
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Live URl : https://diagnoz-56f1c.web.app/
 
-Currently, two official plugins are available:
+## Admin userName and password
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-  userName or email : b@b.com
+-  password : Aa!12345
+
+   
+      
+
+## Description
+
+Fabby is destination for exquisite textile art and craftsmanship. We curate a collection of handmade pieces from artisans around the globe, blending tradition with contemporary flair.
+
+## Features and  characteristics
+
+- Separate dashboards for admins and users, offering tailored functionalities and a streamlined interface.
+- Users can browse available health-related tests and book appointments.
+- payment gateway for users to pay for tests securely online using online payment method.
+- Users can view and download their test results from their dashboards once the results are available.
+- Users can update their personal information, view their booking history, and manage their account settings.
+- Admins can manage test offerings, view bookings, handle payments, and generate reports on website activities
+- Capability for admins to create and manage promotional offers, discounts, and coupons for various tests.
+- Enhanced search functionality with filters for test  available dates to help users find the most suitable options quickly.
+- Live updates on test availability to ensure users can book slots that are currently open, minimizing booking conflicts.
+- Fully responsive design ensuring an optimal experience for users accessing the website from smartphones or tablets.
+
+
+
+
