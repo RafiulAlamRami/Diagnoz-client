@@ -26,9 +26,7 @@ const DelailsPage = () => {
     })
     console.log(test);
 
-    const check = () => {
-        console.log('okay');
-    }
+   
     return (
 
         <div>
