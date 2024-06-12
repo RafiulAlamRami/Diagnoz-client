@@ -8,11 +8,7 @@
 -  password : Aa!12345
 
    
-      
 
-## Description
-
-Fabby is destination for exquisite textile art and craftsmanship. We curate a collection of handmade pieces from artisans around the globe, blending tradition with contemporary flair.
 
 ## Features and  characteristics
 
