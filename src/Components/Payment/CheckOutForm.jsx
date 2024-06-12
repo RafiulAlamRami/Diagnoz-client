@@ -29,7 +29,7 @@ export const CheckOutForm = ({ price, id, refetch }) => {
     const [er, setEr] = useState()
     const totalPrice = pr
 
-    const cuponRef = useRe(null);
+    const cuponRef = useRef(null);
     let cuponCode = '12345'
     const hancu = (e) => {
         e.preventDefault();
