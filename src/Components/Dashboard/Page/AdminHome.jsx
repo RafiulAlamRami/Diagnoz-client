@@ -7,12 +7,7 @@ const AdminHome = () => {
     return (
         <div>
             <div>
-                <h2>
-                    <span>Hi ,Welcome </span>
-                    {
-                        user?.displayName ? user?.displayName : 'Back'
-                    }
-                </h2>
+                
             </div>
         </div>
     );

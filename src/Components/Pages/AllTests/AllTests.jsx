@@ -22,12 +22,12 @@ const AllTests = () => {
 
     const [a,seta]=useState()
     const [b,setb]=useState()
-    const [c,setc]=useState()
+    
 
     const handleDateChange=(test)=>{
         seta(test.startDate)
         setb(test.endDate-test.startDate)
-        setc(test.startMonth)
+        
     }
     
 
