@@ -32,16 +32,16 @@ const AllTests = () => {
     
 
     // const enabledDates = [
-    //     new Date(2024, 5, 15), // June 15, 2024
-    //     new Date(2024, 5, 16), // June 16, 2024
-    //     new Date(2024, 5, 17), // June 17, 2024
-    //     new Date(2024, 5, 18), // June 18, 2024
-    //     new Date(2024, 5, 19), // June 19, 2024
+    //     new Date(2024, 5, 15), 
+    //     new Date(2024, 5, 16), 
+    //     new Date(2024, 5, 17), 
+    //     new Date(2024, 5, 18), 
+    //     new Date(2024, 5, 19), 
 
     // ];
 
-    const enabledDates = Array.from({ length:b }, (_, index) => (
-        new Date(new Date().getFullYear(), new Date().getMonth() , a + index) // June 15, 2024 to June 19, 2024
+    const enabledDates = Array.from({ length:b+1 }, (_, index) => (
+        new Date(new Date().getFullYear(), new Date().getMonth() , a + index) 
       ));
     
     const isDateEnabled = (date) => {
