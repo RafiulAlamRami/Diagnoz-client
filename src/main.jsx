@@ -30,6 +30,16 @@ import AllTest from './Components/Dashboard/Page/AllTest.jsx';
 import Reservation from './Components/Dashboard/Page/Reservation.jsx';
 import AddBanner from './Components/Dashboard/Page/AddBanner.jsx';
 import DelailsPage from './Components/Pages/DelailsPage.jsx';
+import AllBanner from './Components/Dashboard/Page/AllBanner.jsx';
+import UpcommingApponment from './Components/Dashboard/UserPageD/UpcommingApponment.jsx';
+import TestResult from './Components/Dashboard/UserPageD/TestResult.jsx';
+import Blog from './Components/Pages/Blog.jsx';
+import Emergency from './Components/Pages/Emergency .jsx';
+import Carrer from './Components/Pages/Carrer.jsx';
+import Contact from './Components/Pages/Contact.jsx';
+import UpdateTest from './Components/Dashboard/Page/UpdateTest.jsx';
+import Error from './Components/Pages/Error.jsx';
+import Stats from './Components/Dashboard/Page/Stats.jsx';
 // import AuthProvider from './Provider/AuthProvider.jsx';
 
 const queryClient = new QueryClient()
@@ -38,6 +48,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement:<Error></Error>,
     children: [
       {
         path: '/',
@@ -58,6 +69,22 @@ const router = createBrowserRouter([
       {
         path:'/details/:id',
         element:<PrivateRoute><DelailsPage></DelailsPage></PrivateRoute>
+      },
+      {
+        path:'/blog',
+        element:<Blog></Blog>
+      },
+      {
+        path:'/emergency',
+        element:<Emergency></Emergency>
+      },
+      {
+        path:'/career',
+        element:<Carrer></Carrer>
+      },
+      {
+        path:'/contact',
+        element:<Contact></Contact>
       }
     ]
   },
@@ -85,12 +112,24 @@ const router = createBrowserRouter([
         element: <AdminRoute><AllTest></AllTest></AdminRoute>
       },
       {
-        path: 'reservation',
+        path: 'reservation/:id',
         element: <AdminRoute><Reservation></Reservation></AdminRoute>
       },
       {
         path: 'addBanner',
         element: <AdminRoute><AddBanner></AddBanner></AdminRoute>
+      },
+      {
+        path:'allBanner',
+        element:<AdminRoute><AllBanner></AllBanner></AdminRoute>
+      },
+      {
+        path:'updateTest/:id',
+        element:<UpdateTest></UpdateTest>
+      },
+      {
+        path:'stats',
+        element:<Stats></Stats>
       },
 
       //user routes
@@ -98,6 +137,14 @@ const router = createBrowserRouter([
       {
         path: 'userHome',
         element: <UserHome></UserHome>
+      },
+      {
+        path:'appoinment',
+        element:<UpcommingApponment></UpcommingApponment>
+      },
+      {
+        path:'testResult',
+        element:<TestResult></TestResult>
       }
     ]
   }

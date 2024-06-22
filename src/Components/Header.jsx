@@ -1,35 +1,56 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from './Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useAdmin } from './Hooks/useAdmin';
 import { AuthContext } from '../Providerr/AuthProviderr';
 import useUser from './Hooks/useUser';
+import useActive from './Hooks/useActive';
 
 const Header = () => {
 
-    const [isAdmin]=useAdmin()
+    const [isAdmin] = useAdmin()
     // const [st]=useUser()
     // console.log(st)
 
+    const isActive=useActive()
+
     const auth = useAuth()
     // console.log(auth.user);
-    const { user, logOut,status } = auth
+    const { user, logOut, status } = auth
     console.log(status);
     // console.log(user);
     // console.log(status);
-    
+    // const [isActive, setIsActive] = useState()
+
+    // useEffect(() => {
+    //     if (status === 'active') {
+    //         setIsActive(true)
+    //     }
+    //     else {
+    //         setIsActive(false)
+    //     }
+    // }, [status])
 
 
     const links = <>
-        <li> <NavLink to={'/'} className='mr-3'>Home</NavLink></li>
-        <li> <NavLink to={'/allTests'}>All Tests</NavLink></li>
+        <li> <NavLink to={'/'} className='mr-2'>Home</NavLink></li>
+        <li> <NavLink to={'/allTests'} className='mr-2'>All Tests</NavLink></li>
+        <li> <NavLink to={'/blog'} className='mr-2'>Blogs</NavLink></li>
+        <li className='text-red-500' > <NavLink to={'/emergency'} className='mr-2'>Emergency</NavLink></li>
+
+        <li className='mr-2'> <NavLink to={'/contact'}>Contact Us</NavLink></li>
+        <li className='mr-6'> <NavLink to={'/career'}>Career</NavLink></li>
+        {/* {
+            user && !isAdmin && isActive && <li className='bg-cyan-700 text-white rounded-sm'> <NavLink to='/dashboard/userHome'>Dashboard</NavLink> </li>
+        } */}
         {
-            user && isAdmin && <li> <NavLink to='/dashboard/adminHome'>Dashboard</NavLink> </li>
+            user && !isAdmin && isActive && <li className='bg-cyan-700 text-white rounded-sm'> <NavLink to='/dashboard/userHome'>Dashboard</NavLink> </li>
         }
         {
-            user && !isAdmin && <li> <NavLink to='/dashboard/userHome'>Dashboard</NavLink> </li>
+            user && isAdmin && <li className='bg-cyan-700 text-white rounded-sm'> <NavLink to='/dashboard/adminHome'>Dashboard</NavLink> </li>
         }
+
     </>
 
     const handleLogOut = () => {
@@ -45,7 +66,7 @@ const Header = () => {
             })
     }
 
-    
+
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -74,6 +95,9 @@ const Header = () => {
                     {
                         user ?
                             <>
+                                <div className="w-12 h-12 rounded-full mr-4 border-2">
+                                    <img className='w-full h-full object-center rounded-full' alt=" image " src={user.photoURL} />
+                                </div>
                                 <Link onClick={handleLogOut}><button className='btn'> Logout</button></Link>
                             </>
                             :

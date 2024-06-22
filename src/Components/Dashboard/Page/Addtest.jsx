@@ -16,21 +16,24 @@ import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const Addtest = () => {
 
-    const axiosPublic=useAxiosPublic()
-    const axiosSecure=useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
 
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState(null);
-    const onChange = (dates) => {
-        const [start, end] = dates;
-        setStartDate(start);
-        setEndDate(end);
-    };
+    // const [startDate, setStartDate] = useState();
+    // const [endDate, setEndDate] = useState(null);
+    // const onChange = (dates) => {
+    //     const [start, end] = dates;
+    //     setStartDate(start);
+    //     setEndDate(end);
+    // };
 
-    // console.log(startDate?.getDate());
-    // console.log(startDate?.getMonth()+1);
-    // console.log(startDate?.getYear()+1900);
-    
+    const [selectedDate, setSelectedDate] = useState(null);
+    // console.log(selectedDate?.getDate());
+    // console.log(selectedDate?.getMonth());
+    // console.log(selectedDate?.getYear());
+
+
+
 
     const { register, handleSubmit, reset } = useForm()
 
@@ -44,12 +47,12 @@ const Addtest = () => {
             longDes: data.longDes,
             price: parseFloat(data.price),
             slot: data.slot,
-            startDate:startDate?.getDate(),
-            startMonth:startDate?.getMonth()+1,
-            startYear:startDate?.getYear()+1900,
-            endDate:endDate?.getDate(),
-            endMonth:endDate?.getMonth()+1,
-            endYear:endDate?.getYear()+1900,
+            date: selectedDate?.getDate(),
+            month: selectedDate?.getMonth() + 1,
+            year: selectedDate?.getYear() + 1900,
+            // endDate: endDate?.getDate(),
+            // endMonth: endDate?.getMonth() + 1,
+            // endYear: endDate?.getYear() + 1900,
 
         }
 
@@ -107,12 +110,12 @@ const Addtest = () => {
 
                         <div className='w-3/4'>
                             <label className='label'>Image Url</label>
-                            <input type="text" {...register("image", { required: true })} className="input input-bordered w-full" />
+                            <input type="text" placeholder='Image url' {...register("image", { required: true })} className="input input-bordered w-full" />
                         </div>
 
                         <div className='w-1/4'>
                             <label className='label'>Slot</label>
-                            <input type="number" {...register("slot", { required: true })} className="input input-bordered w-full" />
+                            <input type="number" placeholder='Slot' {...register("slot", { required: true })} className="input input-bordered w-full" />
                         </div>
                     </div>
 
@@ -121,7 +124,7 @@ const Addtest = () => {
                         {/* <label className='label'>Date</label>
                             <input type="number" {...register("slot", { required: true })} className="input input-bordered w-full" /> */}
 
-                        <DatePicker className="input input-bordered w-full"
+                        {/* <DatePicker className="input input-bordered w-full"
                             selected={startDate}
                             onChange={onChange}
                             minDate={new Date()}
@@ -131,7 +134,22 @@ const Addtest = () => {
                             selectsRange
                             inline
                             showDisabledMonthNavigation
-                        />
+                        /> */}
+
+                        {/* ------------------ */}
+                        <div>
+                            <DatePicker
+                                selected={selectedDate}
+                                onChange={(date) => setSelectedDate(date)}
+                                dateFormat="dd/MM/yyyy"
+                                minDate={new Date()} // This will disable all dates before today
+                                inline
+                            />
+                            <div>
+                                Selected Date: {selectedDate ? selectedDate.toDateString() : "None"}
+                            </div>
+                        </div>
+                        {/* ---------------- */}
 
                     </div>
 

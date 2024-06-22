@@ -15,7 +15,7 @@ const AuthProviderr = ({children}) => {
     const [user,setUser]=useState(null)
     const [loading,setLoading]=useState(true)
     const provider = new GoogleAuthProvider();
-    const [status,setStatus]=useState(null)
+    // const [status,setStatus]=useState(null)
 
 
     // for jwt
@@ -68,11 +68,11 @@ const AuthProviderr = ({children}) => {
                 //     setUs(data)
                 // })
 
-                axios.get(`https://diagnoz-server.vercel.app/user/${currentUser.email}`)
-                .then(res=>{
-                    // console.log(res.data.status);
-                    setStatus(res.data.status)
-                })
+                // axios.get(`https://diagnoz-server.vercel.app/user/${currentUser.email}`)
+                // .then(res=>{
+                //     // console.log(res.data.status);
+                //     setStatus(res.data.status)
+                // })
                 
             }
             else{

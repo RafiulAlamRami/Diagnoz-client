@@ -5,10 +5,20 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
-export const CheckOutForm = ({ price, id, refetch }) => {
+export const CheckOutForm = ({ price, id, date,month,year,testName }) => {
 
+    const axiosPublic = useAxiosPublic()
 
+    const { data: banner = [] } = useQuery({
+        queryKey: ["banner-homes"],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/banner-home')
+            return res.data
+        }
+    })
 
     // console.log(price);
     // console.log(id);
@@ -30,14 +40,15 @@ export const CheckOutForm = ({ price, id, refetch }) => {
     const totalPrice = pr
 
     const cuponRef = useRef(null);
-    let cuponCode = '12345'
+    let cuponCode = banner.coupon
+    let cuponRate = banner.couponRate
     const hancu = (e) => {
         e.preventDefault();
         const cupon = cuponRef.current.value;
         console.log(cupon);
         console.log(price);
         if (cupon === cuponCode) {
-            setPr(price - 20)
+            setPr(price - (cuponRate/100)*price )
             setDisable(true)
             setEr('')
         }
@@ -113,10 +124,14 @@ export const CheckOutForm = ({ price, id, refetch }) => {
                 // save payment in the database
 
                 const payment = {
+                    name:user.name,
                     email: user.email,
                     price: totalPrice,
                     transactionId: paymentIntent.id,
-                    date: new Date(),
+                    testName:testName,
+                    date:date,
+                    month:month,
+                    year:year,
                     testId: id,
                     status: 'Pending'
                 }
@@ -177,7 +192,10 @@ export const CheckOutForm = ({ price, id, refetch }) => {
                     Pay
                 </button>
                 {error?.message && <p className='text-red-700'>{error?.message}</p>}
-                {transactionId && <p className='text-green-600'>Your transaction Id : {transactionId}</p>}
+                {transactionId && <div>
+                    <p className='text-green-600'>Payment complete</p>
+                <p className='text-green-600'>Your transaction Id : {transactionId}</p>
+                </div>}
             </form>
         </div>
     );

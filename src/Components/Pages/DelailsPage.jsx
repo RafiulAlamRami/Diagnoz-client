@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
@@ -7,25 +7,53 @@ import { loadStripe } from '@stripe/stripe-js';
 // import CheckOutForm from '../Payment/CheckOutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import { CheckOutForm } from '../Payment/CheckOutForm';
+import useAuth from '../Hooks/useAuth';
+import useActive from '../Hooks/useActive';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PAYMENT_GATEWAY_PK);
 
 const DelailsPage = () => {
+
+    const axiosSecure=useAxiosSecure()
+
+    const auth = useAuth()
+    // console.log(auth.user);
+    const { user, status } = auth
 
     const axiosPublic = useAxiosPublic()
 
     const { id } = useParams()
     // console.log(id);
 
+    const active=useActive()
+
+    
+
     const { data: test = [], refetch } = useQuery({
         queryKey: ["test", id],
         queryFn: async () => {
-            const res = await axiosPublic(`/test-details/${id}`)
+            const res = await axiosSecure(`/test-details/${id}`)
             return res.data
         }
     })
     console.log(test);
 
+    // const [isActive,setIsActive]=useState()
+
+    // useEffect(()=>{
+    //     if (status==='active') {
+    //         setIsActive(true)
+    //     }
+    //     else{
+    //         setIsActive(false)
+    //     }
+    // },[status])
+    if (!active) {
+        return  <div>
+        <p className='text-red-600 my-10'>You are Blocked by Admin please contact !!!</p>
+        
+       </div>
+    }
 
     return (
 
@@ -46,13 +74,33 @@ const DelailsPage = () => {
 
 
 
-                                <div className=" gap-[1.5em]" >
-                                    <button className={`text-white font-work text-[1em] font-semibold btn bg-[#50B1C9] hover:bg-[#50B1C9] ${test.slot < 1 ? 'btn-disabled' : ''} `} onClick={() => document.getElementById('my_modal_5').showModal()}>Book Now</button>
-                                    <p>{test.slot < 1 ? 'You cannot Book now because no more slot availabe' : ''}</p>
+                                {/* <div className=" gap-[1.5em]" >
+                                    <button className={`text-white font-work text-[1em] font-semibold btn bg-[#50B1C9] hover:bg-[#50B1C9] ${test.slot < 1 || !isActive ? 'btn-disabled' : ''} `} onClick={() => document.getElementById('my_modal_5').showModal()}>Book Now</button>
+                                    <p className='text-red-600'>{test.slot < 1 ? 'You cannot Book now because no more slot availabe' : ''}</p>
+                                    <p className='text-red-600'>{!isActive ? 'Sorry!! you can not book any test and can not vist your Dashboard.You can contact us.Thankyou ':''}</p>
                                     <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                                         <div className="modal-box">
                                             <Elements stripe={stripePromise}>
-                                                <CheckOutForm price={test.price} id={test._id}></CheckOutForm>
+                                                <CheckOutForm price={test.price} id={test._id} date={test.date} month={test.month} year={test.year} testName={test.name}></CheckOutForm>
+                                            </Elements>
+                                            <div className="modal-action">
+                                                <form method="dialog">
+                                                    
+                                                    <button className={`btn hover:bg-green-500 hover:text-white`}>Close</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </dialog>
+                                </div> */}
+
+                                <div className=" gap-[1.5em]" >
+                                    <button className={`text-white font-work text-[1em] font-semibold btn bg-[#50B1C9] hover:bg-[#50B1C9] ${test.slot < 1 ? 'btn-disabled' : ''} `} onClick={() => document.getElementById('my_modal_5').showModal()}>Book Now</button>
+                                    <p className='text-red-600'>{test.slot < 1 ? 'You cannot Book now because no more slot availabe' : ''}</p>
+
+                                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                                        <div className="modal-box">
+                                            <Elements stripe={stripePromise}>
+                                                <CheckOutForm price={test.price} id={test._id} date={test.date} month={test.month} year={test.year} testName={test.name}></CheckOutForm>
                                             </Elements>
                                             <div className="modal-action">
                                                 <form method="dialog">
@@ -63,7 +111,8 @@ const DelailsPage = () => {
                                         </div>
                                     </dialog>
                                 </div>
-                                {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+
 
                             </div>
                         </div>

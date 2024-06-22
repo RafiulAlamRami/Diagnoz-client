@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import { AuthContext } from '../../Providerr/AuthProviderr';
+import useActive from '../Hooks/useActive';
 
 
 
@@ -16,6 +17,8 @@ const Login = () => {
 
     let navigate = useNavigate();
     let location = useLocation();
+
+    
 
     let from = location.state?.from?.pathname || "/";
 
@@ -43,7 +46,8 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                   });
-                navigate('/dashboard/userHome');
+                  
+                navigate('/dashboard');
 
             })
             .catch(error=>{
@@ -89,7 +93,7 @@ const Login = () => {
                     console.log("already exsist : ",res.data.message,res.data.insertedId);
                 }
             })
-            navigate('/dashboard/userHome');
+            navigate('/dashboard');
         })
         .catch(error=>{
             const errorMessage = error.message;
@@ -103,7 +107,7 @@ const Login = () => {
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
-                <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="hero-content flex-col">
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold my-9">Login now!</h1>
                     </div>
